@@ -29,7 +29,7 @@ public class Menu implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("\n==============================================");
-        System.out.println("🤖 BIENVENIDO AL MENÚ INTERACTIVO DE MUEBLERÍA");
+        System.out.println("BIENVENIDO AL MENÚ INTERACTIVO DE MUEBLERÍA");
         System.out.println("==============================================");
 
         boolean continuar = true;
@@ -102,16 +102,14 @@ public class Menu implements CommandLineRunner {
         System.out.println("3. Listar Muebles");
         System.out.println("4. Desactivar Mueble");
         System.out.println("5. Activar Mueble");
-        System.out.println("--- Ventas ---");
         System.out.println("6. Crear Cotización");
         System.out.println("7. Confirmar Venta");
-        System.out.println("--------------------");
         System.out.println("0. Salir");
-        System.out.print("Seleccione una opción: ");
+        System.out.print("Selecciona una opción: ");
     }
 
     private void crearMueble() {
-        System.out.println("\n--- 1. Crear Mueble ---");
+        System.out.println("\n-- Crear Mueble --");
         Mueble m = new Mueble();
 
         System.out.print("Nombre: ");
@@ -129,7 +127,7 @@ public class Menu implements CommandLineRunner {
         System.out.println("1. GRANDE");
         System.out.println("2. MEDIANO");
         System.out.println("3. PEQUENO");
-        System.out.print("Opción de Tamaño (1-3): ");
+        System.out.print("Opción de Tamaño (1-3) solo ingresar número: ");
         int tamanoOpcion = scanner.nextInt();
         scanner.nextLine();
 
@@ -149,11 +147,11 @@ public class Menu implements CommandLineRunner {
 
         Mueble muebleGuardado = catalogoService.saveMueble(m);
 
-        System.out.println(" El mueble fue guardado con ID: " + muebleGuardado.getIdMueble() + " (Tamaño: " + m.getTamano() + ")");
+        System.out.println(" El mueble fue guardado con el ID: " + muebleGuardado.getIdMueble() + " (Tamaño: " + m.getTamano() + ")");
     }
 
     private void crearVariante() {
-        System.out.println("\n--- 2. Crear Variante ---");
+        System.out.println("\n-- Crear Variante --");
         Variante v = new Variante();
 
         System.out.print("Nombre de la variante: ");
@@ -167,7 +165,7 @@ public class Menu implements CommandLineRunner {
     }
 
     private void listarMuebles() {
-        System.out.println("\n--- 3. Listar Muebles ---");
+        System.out.println("\n-- Listar Muebles --");
         List<Mueble> muebles = catalogoService.findAllMuebles();
         if (muebles.isEmpty()) {
             System.out.println("No hay muebles en el catálogo.");
@@ -188,7 +186,7 @@ public class Menu implements CommandLineRunner {
     }
 
     private void desactivarMueble() {
-        System.out.println("\n--- 4. Desactivar Mueble ---");
+        System.out.println("\n-- Desactivar Mueble --");
         System.out.print("Ingrese el ID del mueble a DESACTIVAR: ");
         Long id = scanner.nextLong();
         scanner.nextLine();
@@ -198,7 +196,7 @@ public class Menu implements CommandLineRunner {
     }
 
     private void activarMueble() {
-        System.out.println("\n--- 5. Activar Mueble ---");
+        System.out.println("\n-- Activar Mueble --");
         System.out.print("Ingrese el ID del mueble a ACTIVAR: ");
         Long id = scanner.nextLong();
         scanner.nextLine();
@@ -209,7 +207,7 @@ public class Menu implements CommandLineRunner {
     }
 
     private void crearCotizacion() {
-        System.out.println("\n--- 6. Crear Cotización ---");
+        System.out.println("\n-- Crear Cotización --");
         Cotizacion cotizacion = new Cotizacion();
         List<DetalleCotizacion> detalles = new ArrayList<>();
 
@@ -252,12 +250,12 @@ public class Menu implements CommandLineRunner {
         cotizacion.setDetalles(detalles);
         Cotizacion cotizacionGuardada = ventaService.crearCotizacion(cotizacion);
 
-        System.out.println(" Cotización creada con ID: " + cotizacionGuardada.getIdCotizacion());
+        System.out.println(" Cotización creada con el ID: " + cotizacionGuardada.getIdCotizacion());
         System.out.printf(" Total Calculado: %.2f\n", cotizacionGuardada.getTotalCotizacion());
     }
 
     private void confirmarVenta() {
-        System.out.println("\n--- 7. Confirmar Venta ---");
+        System.out.println("\n-- Confirmar Venta --");
         System.out.print("Ingrese el ID de la Cotización a confirmar: ");
         Long id = scanner.nextLong();
         scanner.nextLine();

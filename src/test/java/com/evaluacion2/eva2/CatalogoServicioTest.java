@@ -22,14 +22,11 @@ public class CatalogoServicioTest {
     @Mock
     private MuebleRepositorio muebleRepository;
 
-    @Mock
-    private VarianteRepositorio varianteRepository;
-
     @InjectMocks
     private CatalogoServicio catalogoService;
 
     @Test
-    void testDeactivateMueble_CambiaEstadoAInactivo() {
+    void testDesactivarMueble_CambiarEstadoAInactivo() {
         Long id = 1L;
         Mueble mueble = new Mueble();
         mueble.setIdMueble(id);
