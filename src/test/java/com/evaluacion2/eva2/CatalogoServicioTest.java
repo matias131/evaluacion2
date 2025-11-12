@@ -1,9 +1,8 @@
-package com.evaluacion2.eva2; // <-- Paquete Raíz
+package com.evaluacion2.eva2;
 
 import com.evaluacion2.eva2.Modelo.EstadoMueble;
 import com.evaluacion2.eva2.Modelo.Mueble;
 import com.evaluacion2.eva2.Repositorio.MuebleRepositorio;
-import com.evaluacion2.eva2.Repositorio.VarianteRepositorio;
 import com.evaluacion2.eva2.Servicio.CatalogoServicio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

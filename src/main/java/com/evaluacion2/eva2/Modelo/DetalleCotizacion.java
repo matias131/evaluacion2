@@ -17,7 +17,7 @@ public class DetalleCotizacion {
 
     @ManyToOne
     @JoinColumn(name = "mueble_id", nullable = false)
-    private Mueble mueble; // Mueble cotizado
+    private Mueble mueble;
 
     @ManyToMany
     @JoinTable(

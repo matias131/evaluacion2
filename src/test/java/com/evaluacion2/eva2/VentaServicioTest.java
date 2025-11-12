@@ -1,4 +1,4 @@
-package com.evaluacion2.eva2; // <-- Paquete Raíz
+package com.evaluacion2.eva2;
 
 import com.evaluacion2.eva2.Modelo.*;
 import com.evaluacion2.eva2.Repositorio.CotizacionRepositorio;
