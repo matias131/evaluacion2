@@ -80,7 +80,7 @@ public class Menu implements CommandLineRunner {
                 scanner.nextLine();
 
             } catch (Exception e) {
-                System.err.println("\n ERROR: " + e.getMessage());
+                System.out.println("\n ERROR: " + e.getMessage());
                 System.out.println("\n Presiona Enter para poder continuar");
                 scanner.nextLine();
             }
@@ -166,7 +166,7 @@ public class Menu implements CommandLineRunner {
         }
 
         System.out.printf("%-5s %-15s %-10s %-7s %-10s %-10s%n", "ID" , "Nombre" , "Precio" , "Stock" , "Estado" , "Tamaño");
-        System.out.println("-------------------------------------------------");
+        System.out.println("-------------------------------------------------------------");
         for (Mueble m : muebles) {
             System.out.printf("%d | %-15s | %-10.2f | %-5d | %-8s | %-10s\n",
                     m.getIdMueble(),
