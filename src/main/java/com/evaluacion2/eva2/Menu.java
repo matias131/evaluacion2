@@ -22,15 +22,12 @@ public class Menu implements CommandLineRunner {
     private VentaServicio ventaService;
 
     @Autowired
-    private ConfigurableApplicationContext context; // Para cerrar la app
+    private ConfigurableApplicationContext context;
 
     private Scanner scanner = new Scanner(System.in);
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("\n==============================================");
-        System.out.println("BIENVENIDO AL MENÚ INTERACTIVO DE MUEBLERÍA");
-        System.out.println("==============================================");
 
         boolean continuar = true;
         while (continuar) {
@@ -43,8 +40,8 @@ public class Menu implements CommandLineRunner {
                 }
                 scanner.nextLine();
             } catch (Exception e) {
-                System.out.println("Entrada inválida.");
-                if (scanner.hasNextLine()) scanner.next(); // Limpiar buffer
+                System.out.println("La entrada es inválida.");
+                if (scanner.hasNextLine()) scanner.next();
                 continue;
             }
 
@@ -76,27 +73,23 @@ public class Menu implements CommandLineRunner {
                         context.close();
                         continue;
                     default:
-                        System.out.println("Opción no válida. Intente de nuevo.");
+                        System.out.println("Opción no válida. Intenta de nuevo.");
                 }
 
-                System.out.println("\n(Presione Enter para continuar...)");
+                System.out.println("\n Presiona Enter para poder continuar");
                 scanner.nextLine();
 
             } catch (Exception e) {
                 System.err.println("\n ERROR: " + e.getMessage());
-                System.out.println("\n(Presione Enter para continuar...)");
+                System.out.println("\n Presiona Enter para poder continuar");
                 scanner.nextLine();
             }
         }
-
-        System.out.println("==============================================");
         System.out.println("Saliendo del menú");
-        System.out.println("==============================================");
     }
 
     private void mostrarMenuPrincipal() {
-        System.out.println("\n--- MENÚ PRINCIPAL ---");
-        System.out.println("--- Catálogo ---");
+        System.out.println("\n-- MENÚ --");
         System.out.println("1. Crear Mueble");
         System.out.println("2. Crear Variante");
         System.out.println("3. Listar Muebles");
@@ -147,7 +140,7 @@ public class Menu implements CommandLineRunner {
 
         Mueble muebleGuardado = catalogoService.saveMueble(m);
 
-        System.out.println(" El mueble fue guardado con el ID: " + muebleGuardado.getIdMueble() + " (Tamaño: " + m.getTamano() + ")");
+        System.out.println(" El mueble fue guardado con el ID: " + muebleGuardado.getIdMueble());
     }
 
     private void crearVariante() {
@@ -172,10 +165,10 @@ public class Menu implements CommandLineRunner {
             return;
         }
 
-        System.out.println("ID | Nombre | Precio | Stock | Estado | Tamaño");
+        System.out.printf("%-5s %-15s %-10s %-7s %-10s %-10s%n", "ID" , "Nombre" , "Precio" , "Stock" , "Estado" , "Tamaño");
         System.out.println("-------------------------------------------------");
         for (Mueble m : muebles) {
-            System.out.printf("%d | %s | %.2f | %d | %s | %s\n",
+            System.out.printf("%d | %-15s | %-10.2f | %-5d | %-8s | %-10s\n",
                     m.getIdMueble(),
                     m.getNombreMueble(),
                     m.getPrecioBase(),
@@ -233,7 +226,7 @@ public class Menu implements CommandLineRunner {
                     scanner.nextLine();
                     variantes.add(new Variante() {{ setIdVariante(idVariante); }});
 
-                    System.out.print("¿Añadir otra variante a este mueble? (s/n): ");
+                    System.out.print("¿Quieres añadir otra variante a este mueble? (s/n): ");
                     if (!scanner.nextLine().equalsIgnoreCase("s")) {
                         agregarMasVariantes = false;
                     }
