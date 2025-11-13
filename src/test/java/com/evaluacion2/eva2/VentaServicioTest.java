@@ -30,6 +30,7 @@ public class VentaServicioTest {
     @InjectMocks
     private VentaServicio ventaService;
 
+    //aqui se aplica que el tipo de dato en long por eso una L y no quiero recibir un entero
     @Test
     void testCrearCotizacion_CalculoDePrecioCorrecto() {
         Mueble mesa = new Mueble();

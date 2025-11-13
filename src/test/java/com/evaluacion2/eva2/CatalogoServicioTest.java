@@ -24,6 +24,7 @@ public class CatalogoServicioTest {
     @InjectMocks
     private CatalogoServicio catalogoService;
 
+    //se quiere recibir un tipo de dato long y no uno entero por eso la L
     @Test
     void testDesactivarMueble_CambiarEstadoAInactivo() {
         Long id = 1L;

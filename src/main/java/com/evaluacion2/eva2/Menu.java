@@ -79,7 +79,7 @@ public class Menu implements CommandLineRunner {
                 System.out.println(" ");
 
             } catch (Exception e) {
-                System.out.println("\n ERROR: " + e.getMessage());
+                System.out.println( e.getMessage());
 
             }
         }
@@ -231,7 +231,7 @@ public class Menu implements CommandLineRunner {
                 detalle.setVariantes(variantes);
             }
             detalles.add(detalle);
-            System.out.print("¿Agregar otro ítem (otro mueble) a la cotización? (s/n): ");
+            System.out.print("¿Agregar otro mueble a la cotización? (s/n): ");
             if (!scanner.nextLine().equalsIgnoreCase("s")) {
                 agregarMas = false;
             }
