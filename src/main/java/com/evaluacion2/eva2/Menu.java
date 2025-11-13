@@ -76,13 +76,11 @@ public class Menu implements CommandLineRunner {
                         System.out.println("Opción no válida. Intenta de nuevo.");
                 }
 
-                System.out.println("\n Presiona Enter para poder continuar");
-                scanner.nextLine();
+                System.out.println(" ");
 
             } catch (Exception e) {
                 System.out.println("\n ERROR: " + e.getMessage());
-                System.out.println("\n Presiona Enter para poder continuar");
-                scanner.nextLine();
+
             }
         }
         System.out.println("Saliendo del menú");
@@ -104,7 +102,6 @@ public class Menu implements CommandLineRunner {
     private void crearMueble() {
         System.out.println("\n-- Crear Mueble --");
         Mueble m = new Mueble();
-
         System.out.print("Nombre: ");
         m.setNombreMueble(scanner.nextLine());
         System.out.print("Tipo: ");
