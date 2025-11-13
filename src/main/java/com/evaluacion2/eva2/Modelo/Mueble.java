@@ -3,12 +3,12 @@ package com.evaluacion2.eva2.Modelo;
 import jakarta.persistence.*;
 
 
+//clase mueble con sus atributos
 @Entity
 public class Mueble {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMueble;
-
     private String nombreMueble;
     private String tipo;
     private double precioBase;

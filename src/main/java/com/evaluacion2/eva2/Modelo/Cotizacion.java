@@ -5,18 +5,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+//clase cotizacion que representa una cotización de muebles
 @Entity
 public class Cotizacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCotizacion;
-
     private LocalDateTime fechaCotizacion = LocalDateTime.now();
-
     private boolean esVenta = false;
-
     private double totalCotizacion;
-
 
     @JsonManagedReference
     @OneToMany(mappedBy = "cotizacion", cascade = CascadeType.ALL, orphanRemoval = true)

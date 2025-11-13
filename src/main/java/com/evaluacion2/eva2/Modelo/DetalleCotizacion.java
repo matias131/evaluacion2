@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+
+//Clase DetalleCotizacion que representa los detalles de una cotización
 @Entity
 public class DetalleCotizacion {
     @Id

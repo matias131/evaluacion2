@@ -9,16 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//realiza el calculo de las cotizaciones y asegura la integridad de los datos durante la confirmación de ventas
 @Service
 public class VentaServicio {
 
     @Autowired
-    private CotizacionRepositorio cotizacionRepository;
+    private CotizacionRepositorio cotizacionRepositorio;
 
     @Autowired
-    private CatalogoServicio catalogoService;
+    private CatalogoServicio catalogoServicio;
     public List<Cotizacion> findAll() {
-        return cotizacionRepository.findAll();
+        return cotizacionRepositorio.findAll();
     }
 
     @Transactional
@@ -27,13 +29,13 @@ public class VentaServicio {
 
         for (DetalleCotizacion detalle : cotizacion.getDetalles()) {
 
-            Mueble mueble = catalogoService.findMuebleById(detalle.getMueble().getIdMueble());
+            Mueble mueble = catalogoServicio.findMuebleById(detalle.getMueble().getIdMueble());
             detalle.setMueble(mueble);
 
             List<Variante> variantesPersistidas = new ArrayList<>();
             if (detalle.getVariantes() != null && !detalle.getVariantes().isEmpty()) {
                 for (Variante v : detalle.getVariantes()) {
-                    Variante variantePersistida = catalogoService.findVarianteById(v.getIdVariante());
+                    Variante variantePersistida = catalogoServicio.findVarianteById(v.getIdVariante());
                     variantesPersistidas.add(variantePersistida);
                 }
             }
@@ -51,12 +53,12 @@ public class VentaServicio {
         }
 
         cotizacion.setTotalCotizacion(total);
-        return cotizacionRepository.save(cotizacion);
+        return cotizacionRepositorio.save(cotizacion);
     }
 
     @Transactional(rollbackFor = RuntimeException.class)
     public Cotizacion confirmarVenta(Long cotizacionId) {
-        Cotizacion cotizacion = cotizacionRepository.findById(cotizacionId)
+        Cotizacion cotizacion = cotizacionRepositorio.findById(cotizacionId)
                 .orElseThrow(() -> new RuntimeException("Cotización no encontrada"));
 
         if (cotizacion.isEsVenta()) {
@@ -64,17 +66,17 @@ public class VentaServicio {
         }
 
         for (DetalleCotizacion detalle : cotizacion.getDetalles()) {
-            Mueble mueble = catalogoService.findMuebleById(detalle.getMueble().getIdMueble());
+            Mueble mueble = catalogoServicio.findMuebleById(detalle.getMueble().getIdMueble());
             if (mueble.getStock() < detalle.getCantidad()) {
                 throw new RuntimeException("stock insuficiente para el mueble: " + mueble.getNombreMueble());
             }
 
             mueble.setStock(mueble.getStock() - detalle.getCantidad());
-            catalogoService.saveMueble(mueble);
+            catalogoServicio.saveMueble(mueble);
         }
 
         cotizacion.setEsVenta(true);
-        return cotizacionRepository.save(cotizacion);
+        return cotizacionRepositorio.save(cotizacion);
     }
 
 

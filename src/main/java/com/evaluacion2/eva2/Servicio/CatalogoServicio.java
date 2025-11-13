@@ -10,26 +10,29 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
+
+//Servicio para gestionar el catálogo de muebles y variantes asegurando
+// la integridad de los datos durante las operaciones sean consistentes
 @Service
 public class CatalogoServicio {
 
     @Autowired
-    private MuebleRepositorio muebleRepository;
+    private MuebleRepositorio muebleRepositorio;
 
     @Autowired
-    private VarianteRepositorio varianteRepository;
+    private VarianteRepositorio varianteRepositorio;
 
     @Transactional
     public Mueble saveMueble(Mueble mueble) {
-        return muebleRepository.save(mueble);
+        return muebleRepositorio.save(mueble);
     }
 
     public List<Mueble> findAllMuebles() {
-        return muebleRepository.findAll();
+        return muebleRepositorio.findAll();
     }
 
     public Mueble findMuebleById(Long id) {
-        return muebleRepository.findById(id)
+        return muebleRepositorio.findById(id)
                 .orElseThrow(() -> new RuntimeException("Mueble no encontrado con ID: " + id));
     }
 
@@ -37,27 +40,27 @@ public class CatalogoServicio {
     public Mueble activarMueble(Long id) {
         Mueble mueble = findMuebleById(id);
         mueble.setEstado(EstadoMueble.ACTIVO);
-        return muebleRepository.save(mueble);
+        return muebleRepositorio.save(mueble);
     }
 
     @Transactional
     public Mueble desactivarMueble(Long id) {
         Mueble mueble = findMuebleById(id);
         mueble.setEstado(EstadoMueble.INACTIVO);
-        return muebleRepository.save(mueble);
+        return muebleRepositorio.save(mueble);
     }
 
     @Transactional
     public Variante saveVariante(Variante variante) {
-        return varianteRepository.save(variante);
+        return varianteRepositorio.save(variante);
     }
 
     public List<Variante> findAllVariantes() {
-        return varianteRepository.findAll();
+        return varianteRepositorio.findAll();
     }
 
     public Variante findVarianteById(Long id) {
-        return varianteRepository.findById(id)
+        return varianteRepositorio.findById(id)
                 .orElseThrow(() -> new RuntimeException("Variante no encontrada con ID: " + id));
     }
 }

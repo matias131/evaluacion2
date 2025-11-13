@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import com.evaluacion2.eva2.Servicio.VentaServicio;
 
+
+//Controlador para manejar las cotizaciones y ventas desde su inicio hasta el final
 @RestController
 @RequestMapping("/api/cotizaciones")
 public class CotizacionesControlador {
@@ -15,13 +17,14 @@ public class CotizacionesControlador {
     @Autowired
     private VentaServicio ventaServicio;
 
-    @PostMapping(consumes = "application/json")
+    //Crea una nueva cotización
+    @PostMapping
     public ResponseEntity<?> crearCotizacion(@RequestBody Cotizacion cotizacion) {
         try {
             Cotizacion nuevaCotizacion = ventaServicio.crearCotizacion(cotizacion);
             return new ResponseEntity<>(nuevaCotizacion, HttpStatus.CREATED);
         } catch (RuntimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -30,7 +33,7 @@ public class CotizacionesControlador {
         return ResponseEntity.ok(ventaServicio.findAll());
     }
 
-
+    //Confirma la venta
     @PutMapping("/{id}/confirmarVenta")
     public ResponseEntity<?> confirmarVenta(@PathVariable Long id) {
         try {

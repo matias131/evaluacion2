@@ -10,7 +10,6 @@ public class Variante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVariante;
-
     private String nombre;
     private String descripcion;
     private double costoAdicional;
